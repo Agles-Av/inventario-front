@@ -49,4 +49,16 @@ export class User {
     : null;
     }
   }
+
+  export class updateUserCreate {
+    constructor({ email, nombre, apellidos, username, rol }) {
+      this.email = email;
+      this.nombre = nombre;
+      this.apellidos = apellidos;
+      this.username = username;
+      this.password = username;
+      this.rol = typeof rol === 'object' ? rol.id : rol;
+      this.almacen = null;
+    }
+  }
   

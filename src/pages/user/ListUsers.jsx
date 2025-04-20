@@ -90,7 +90,6 @@ const ListUsers = () => {
     };
 
     const handleDelete = async () => {
-        console.log(userData);
         
         try {
             await DisableUser(userData.id);

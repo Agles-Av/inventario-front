@@ -1,4 +1,4 @@
-import {updateUser, User} from '../../models/user/User';
+import {updateUser, updateUserCreate, User} from '../../models/user/User';
 
 export const toUserModel = (responseData) => {
     const user = responseData.data.user;
@@ -19,8 +19,23 @@ export const toUserModel = (responseData) => {
       apellidos: responseData.lastName,   
       username: responseData.username,
       password: responseData?.password || "",
-      rol: responseData.role,
-      almacen: responseData.almacen,
+      rol: responseData.rol ,
+      almacen: responseData.almacen || null,
     });
   };
   
+  export const toUserResponsableCreate = (responseData) => {
+    return {
+      email: responseData.email,
+      nombre: responseData.name,
+      apellidos: responseData.lastName,
+      username: responseData.username,
+      password: responseData.username,
+      rol: {
+        id: 2
+      },
+      almacen: {
+        id: null
+      }
+    };
+  };

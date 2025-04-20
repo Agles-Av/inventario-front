@@ -34,3 +34,22 @@ export class Categoria {
     }
   }
   
+
+  export class AlmacenModel {
+    constructor({ categoria, encargado, identificador, articulos = null }) {
+      this.categoria = categoria;         // { id: number }
+      this.encargado = encargado;         // { id: number }
+      this.identificador = identificador; // string
+      this.articulos = articulos;         // array o null
+    }
+  
+    static empty() {
+      return new AlmacenModel({
+        categoria: { id: null },
+        encargado: { id: null },
+        identificador: "",
+        articulos: null
+      });
+    }
+  }
+  
