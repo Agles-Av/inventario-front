@@ -8,6 +8,7 @@ import UserModal from './components/UserModal';
 import { DisableUser } from '../../services/admin/DisableUser';
 import ConfirmDialog from './../../components/confirm/ConfirmDialog';
 import { AlertHelper } from '../../utilities/alerts/AlertHelper';
+import AxiosClient from '../../interceptors/AxiosClient';
 
 const ListUsers = () => {
     const [data, setData] = useState([]);
@@ -16,8 +17,10 @@ const ListUsers = () => {
     const [loading, setLoading] = useState(true);
     const [visible, setVisible] = useState(false);
     const [mode, setMode] = useState('create');
+    const [changePassword, setChangePassword] = useState("");
     const [initialData, setInitialData] = useState({});
-
+    console.log(userData);
+    
     useEffect(() => {
         fetchResponsables();
     }, []);
@@ -33,6 +36,25 @@ const ListUsers = () => {
             setLoading(false);
         }
     };
+
+    const cambiarContrasena = async () => {
+        try {
+            await AxiosClient({
+                method: 'PUT',
+                url: `/auth/regresarContrasena/${changePassword.id}`,
+            })
+            AlertHelper.showAlert("Contraseña restablecida correctamente", "success");
+        } catch (error) {
+            console.log(error);
+            AlertHelper.showAlert("No se pudo restablecer la contraseña", "error");
+        }finally{
+            setChangePassword("");
+            setDisable(false);
+            setUserData(null);
+            fetchResponsables();
+        }
+        
+    }
 
     const columns = [
         { field: 'id', header: '#', sortable: true },
@@ -78,6 +100,18 @@ const ListUsers = () => {
                     tooltipOptions={{ position: 'top' }}
                     onClick={() => setDisable(true) & setUserData(rowData)}
                     
+                />
+                <Button
+                icon="pi pi-key"
+                label='Restablecer contraseña'
+                className="text-blue-500 bg-blue-100 p-button-sm p-button-text"
+                tooltip="Restablecer contraseña"
+                tooltipOptions={{ position: 'top' }}
+                onClick={()=>{
+                    setChangePassword(rowData);
+                    setUserData(rowData);
+                    setDisable(true);
+                }}
                 />
             </div>
         );
@@ -130,12 +164,12 @@ const ListUsers = () => {
                 />
             </div>
             <UserModal visible={visible} mode={mode} onhide={setVisible} initialdata={initialData}  loading={fetchResponsables} />
-            <ConfirmDialog visible={disable} onHide={()=>setDisable(false)} onConfirm={handleDelete} 
+            <ConfirmDialog visible={disable} onHide={()=>setDisable(false)} onConfirm={changePassword ?  cambiarContrasena : handleDelete} 
             title={userData?.status ? 'Desactivar responsable' : 'Activar responsable'}
             message={
-                userData?.status ? 
-                '¿Estás seguro de que deseas desactivar al responsable?'
-                : '¿Estás seguro de que deseas activar al responsable?'
+                changePassword ? `¿Estás seguro de que deseas restablecer la contraseña de ${userData?.name}?` : 
+                userData?.status ? `¿Estás seguro de que deseas desactivar a ${userData?.name}?` : 
+                `¿Estás seguro de que deseas activar a ${userData?.name}?`
             }
             />
         </div>

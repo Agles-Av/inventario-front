@@ -87,15 +87,13 @@ const Login = () => {
                             />
                         </div>
                         <div>
-                            <div className=' mt-5'>
-                                <a href="">Recuperar contraseña</a>
-                            </div>
+                            
                         </div>
                         <div className='flex justify-content-center mt-5'>
                             <Button
                                 label="Iniciar sesión"
                                 icon="pi pi-sign-in"
-                                className='w-full'
+                                className='w-full mt-5'
                                 type="submit"
                                 disabled={!formData.username || !formData.password}
                             />
