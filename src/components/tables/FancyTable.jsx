@@ -97,8 +97,8 @@ export const FancyTable = ({
 
   // Reemplazo de Flex con PrimeFlex en el paginador
   const paginatorTemplate = {
-    layout: 'RowsPerPageDropdown CurrentPageReport',
-    'RowsPerPageDropdown': (options) => {
+    layout: 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown',
+     'CurrentPageReport': (options) => {
       return (
         <div className="flex align-items-center gap-2">
           <span className="mr-2">Filas:</span>

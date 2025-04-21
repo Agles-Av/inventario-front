@@ -113,6 +113,7 @@ const Bitacora = () => {
                 globalFilterFields={['usuario', 'accion', 'email', 'tablaAfectada', 'datosAnteriores', 'datosNuevos', 'fecha']}
                 rowClassName={"bg-white"}
                 emptyMessage='No se encontraron registros.'
+                paginator={true}
                 />
             </div>
         </div>
