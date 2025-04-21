@@ -18,9 +18,12 @@ const ArticuloModal = ({ initialData, visible, onhide, mode, loading }) => {
         almacenes: []
     });
     
+    
 
     const [errors, setErrors] = useState({});
-
+    const [errorsAlamacenes, setErrorsAlmacenes] = useState({});
+    console.log("Errores: ",errors);
+    
 
     const [categorias, setCategorias] = useState([]);
     const [almacenesOptions, setAlmacenesOptions] = useState([]);
@@ -82,7 +85,7 @@ const ArticuloModal = ({ initialData, visible, onhide, mode, loading }) => {
             ...formData,
             [e.target.name]: e.value
         })
-        setErrors(validateErrros);
+        setErrorsAlmacenes(validateErrros);
     };
 
     const onHide = () => {
@@ -93,6 +96,8 @@ const ArticuloModal = ({ initialData, visible, onhide, mode, loading }) => {
             almacenes: []
         });
         onhide(false);
+        setErrors({});
+
     }
 
     const enviarDatos = async () => {
@@ -187,7 +192,7 @@ const ArticuloModal = ({ initialData, visible, onhide, mode, loading }) => {
                     placeholder="Seleccione categoría"
                     className="w-full"
                 />
-                {errors.categoria && (
+                {errorsAlamacenes.categoria && (
                     <small className="p-error">{errors.categoria}</small>
                 )}
             </div>
@@ -207,7 +212,7 @@ const ArticuloModal = ({ initialData, visible, onhide, mode, loading }) => {
                     className="w-full"
                     multiple
                 />
-                {errors.almacenes && (
+                {errorsAlamacenes.almacenes && (
                     <small className="p-error">{errors.almacenes}</small>
                 )}
             </div>

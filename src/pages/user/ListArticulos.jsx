@@ -5,11 +5,14 @@ import { getArticulos } from '../../services/admin/CategoriaList'
 import { AlertHelper } from '../../utilities/alerts/AlertHelper'
 import { Button } from 'primereact/button'
 import ArticuloModal from './components/ArticuloModal'
+import ConfirmDialog from './../../components/confirm/ConfirmDialog';
+import { deleteArticulo } from '../../services/admin/deleteArticulo'
 const ListArticulos = () => {
   const [articulos, setArticulos] = useState([])
   const [loading, setLoading] = useState(true)
   const [initialData, setInitialData] = useState(null)
   const [disable, setDisable] = useState(false)
+  const [userData, setUserData] = useState(null)
   const [visible, setVisible] = useState(false)
   const [mode, setMode] = useState("")
 
@@ -98,6 +101,17 @@ const ListArticulos = () => {
     setVisible(true);
   };
 
+  const handleDelete = async () => {
+    try {
+      await deleteArticulo(userData.id)
+    } catch (error) {
+      AlertHelper.showAlert("No se pudo eliminar el articulo", "error");
+    }finally{
+      setDisable(false);
+      setUserData(null);
+      getArticulo();
+    }
+  }
   return (
     <div className='ml-2 h-full w-full'>
       <Card
@@ -119,6 +133,11 @@ const ListArticulos = () => {
         />
       </div>
       <ArticuloModal visible={visible} onhide={setVisible} mode={mode} initialData={initialData} loading={getArticulo} />
+      <ConfirmDialog visible={disable} onHide={()=>setDisable(false)} onConfirm={handleDelete} 
+            title={'Eliminar articulo'}
+            message={'¿Estás seguro de que deseas eliminar el articulo?'
+            }
+            />
     </div>
   )
 }

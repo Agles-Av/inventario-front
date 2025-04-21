@@ -25,6 +25,10 @@ const AlmacenModal = ({ initialData, visible, onhide, loading, mode }) => {
     const [articulosCategoria, setArticulosCategoria] = useState([]);
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
     const [errors, setErrors] = useState({});
+    console.log(errors);
+    console.log(formData);
+    
+    
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
@@ -463,7 +467,12 @@ const AlmacenModal = ({ initialData, visible, onhide, loading, mode }) => {
                             label="Crear almacén"
                             className=""
                             onClick={() => CrearAlmacen()}
-                            disabled={!formData.identificador || !formData.categoria || !formData.encargado || !Object.keys(errors).length === 0}
+                            disabled={
+                                !formData.identificador || 
+                                !formData.categoria || 
+                                !formData.encargado || 
+                                Object.values(errors).some(error => error !== undefined)
+                            }
                         />
                     </div>
                 </div>
