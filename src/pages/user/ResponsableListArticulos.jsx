@@ -18,6 +18,7 @@ const ResponsableListArticulos = () => {
     //responsable
     const [almacenResponsable, setAlmacenResponsable] = useState(null)
 
+
     
       const getArticulo = async () => {
         try {
@@ -122,7 +123,7 @@ const ResponsableListArticulos = () => {
 
         <div className='w-full h-full ml-2'>
             <Card
-                title="Lista de artículos"
+                title={`Lista de articulos de: ${almacenResponsable?.identificador}`}
                 subTitle="Aquí puedes ver la lista de articulos, así como agregar, editar o eliminar articulos."
                 className='text-primary w-full h-full'
             />
@@ -134,6 +135,7 @@ const ResponsableListArticulos = () => {
                     actions={actionsTemplate}
                     showAddButton={true}
                     onAddClick={handleAdd}
+                    rowClassName={"bg-white"}
                 />
             </div>
             <ResponsableArticuloModal mode={mode} visible={visible} onhide={setVisible} loading={getArticulo} initialData={initialData} almacen={almacenResponsable}/>

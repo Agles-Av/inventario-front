@@ -10,9 +10,14 @@ export const LoginService = async (loginCredenciales) => {
     url: "/auth/login",
     data: payload,
   });
-  
-  localStorage.setItem("almacenUser", JSON.stringify(response.data.user.almacen));
+
+  if (response.hasAlmacen === false && response?.data?.user?.rol?.nombre !== "ADMIN"){
+    return AlertHelper.showAlert("No tienes un almacén asignado","error")
+  }else{
+    localStorage.setItem("almacenUser", JSON.stringify(response.data.user.almacen));
   localStorage.setItem("firstLogin", response.firstLogin);
   AlertHelper.showAlert(`Bienvenido ${response.data.user.nombre}`, "success");
   return toAuthSession(response.data);
+  }
+  
 };

@@ -10,7 +10,7 @@ import SideBarResponsable from '../../components/layouts/SideBarResponsable'
 const AppRouter = () => {
     // Lazy load the components
     const Login = lazy(() => import('../../pages/auth/Login'))
-    const FirstLogin = lazy(() => import('../../pages/auth/firstLogin'))
+    const FirstLogin = lazy(() => import('../../pages/auth/FirstLogin'))
     const ListUsers = lazy(() => import('../../pages/user/ListUsers'))
     const ListAlmacenes = lazy(() => import('../../pages/user/ListAlmacenes'))
     const ListArticulos = lazy(() => import('../../pages/user/ListArticulos'))
@@ -21,6 +21,7 @@ const AppRouter = () => {
     const { firstLogin, user } = useContext(AuthContext)
     const role = user?.user?.role || localStorage.getItem('role') || "";
     const firstLogin1 = firstLogin || localStorage.getItem('firstLogin') || "";
+    const hasAlmacen = localStorage.getItem('hasAlmacen') || "";
     if (user?.isAuthenticated && !role) {
         return <SpinnerLazy />
     }
