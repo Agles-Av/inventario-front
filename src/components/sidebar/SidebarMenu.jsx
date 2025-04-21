@@ -7,7 +7,7 @@ import { Tooltip } from 'primereact/tooltip';
 const menuItems = [
     { label: 'Usuarios', icon: 'pi pi-user', path: '/' },
     { label: 'Almacenes', icon: 'pi pi-building-columns', path: '/almacenes' },
-    { label: 'categorías', icon: 'pi pi-objects-column', path: '/categorias' },
+    { label: 'Categorías', icon: 'pi pi-objects-column', path: '/categorias' },
     { label: 'Artículos', icon: 'pi pi-tag', path: '/articulos' },
 ];
 
