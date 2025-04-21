@@ -16,6 +16,7 @@ const ListAlmacenes = () => {
     const fetchAlmacenes = async () => {
         try {
             const response = await getAlmacenes();
+            //recordatorio de crear validacion para solo mostrar almacenes de cierto responsable
             setAlmacenes(response);
         } catch (error) {
             AlertHelper.showAlert("No se pudieron cargar los almacenes", "error");
@@ -56,17 +57,6 @@ const ListAlmacenes = () => {
         setVisible(true);
     };
 
-    const handleDelete = async () => {
-        try {
-            // await DisableAlmacen(almacenData.id);
-            AlertHelper.showAlert("Funcionalidad de activar/desactivar no implementada aún", "info");
-        } catch (error) {
-            AlertHelper.showAlert("No se pudo desactivar el almacén", "error");
-        } finally {
-            fetchAlmacenes();
-        }
-    };
-
     const handleAdd = () => {
         setMode('add');
         setVisible(true);
@@ -76,7 +66,7 @@ const ListAlmacenes = () => {
         <div className='h-full w-full ml-2'>
             <Card
                 title="Lista de Almacenes"
-                subTitle="Aquí puedes ver la lista de almacenes, así como agregar, editar o eliminar almacenes."
+                subTitle="Aquí puedes ver la lista de almacenes, así como agrega almacenes y ver sus detalles."
                 className='text-primary w-full h-full'
             />
             <div className='mt-5 h-full w-full '>

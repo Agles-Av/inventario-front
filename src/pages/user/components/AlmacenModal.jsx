@@ -7,10 +7,11 @@ import { ListUsersService } from '../../../services/admin/ListUsers';
 import { Button } from 'primereact/button';
 import { CambiarEncargado } from '../../../services/admin/CambiarResponsable';
 import { FancyInput } from '../../../components/inputs/FancyInput';
-import { ListCategorias } from '../../../services/admin/ListCategorias';
+import { ListCategoriasAll } from '../../../services/admin/ListCategorias';
 import { almacenValidator } from '../../../utilities/validators/AlmacenValidators';
 import { AddAlmacen } from '../../../services/admin/AddAlmacen';
 import { AlertHelper } from '../../../utilities/alerts/AlertHelper';
+
 
 const AlmacenModal = ({ initialData, visible, onhide, loading, mode }) => {
     const [users, setUsers] = useState([]);
@@ -74,7 +75,7 @@ const AlmacenModal = ({ initialData, visible, onhide, loading, mode }) => {
         }
     }
     const getCategorias = async () => {
-        const categorias = await ListCategorias();
+        const categorias = await ListCategoriasAll();
         setCategorias(categorias);
     }
 

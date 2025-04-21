@@ -1,7 +1,7 @@
 import { CategoriaAdapter } from "../../adapters/admin/CategoriaAdapter";
 import AxiosClient from "../../interceptors/AxiosClient";
 
-export const ListCategorias = async () => {
+export const ListCategoriasAll = async () => {
     const response = await AxiosClient({
         method: 'GET',
         url: '/categoria/get/',

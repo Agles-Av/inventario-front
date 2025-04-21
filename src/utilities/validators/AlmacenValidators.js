@@ -6,8 +6,8 @@ export const almacenValidator = (data) => {
         errors.identificador = 'El identificador es requerido.';
     } else if (!/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ\s]+$/.test(data.identificador)) {
         errors.identificador = 'El identificador no puede contener caracteres especiales.';
-    }else if (data.identificador.length < 3) {
-        errors.identificador = 'El identificador debe tener al menos 3 caracteres.';
+    }else if (data.identificador.length < 2) {
+        errors.identificador = 'El identificador debe tener al menos 2 caracteres.';
     }
     
     if (!data.categoria || data.categoria.trim() === '') {
