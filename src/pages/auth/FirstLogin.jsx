@@ -29,7 +29,6 @@ const FirstLogin = () => {
         e.preventDefault();
         const credenciales = new FirstLoginCredenciales(newPassword.trim())
         const changePassword = await FirstLoginService(credenciales);
-        console.log(changePassword);
         dispatch({ type: "LOGIN", payload: { ...changePassword, firstLogin: false } });
         localStorage.setItem("firstLogin", "false");
         setRedirect(true);

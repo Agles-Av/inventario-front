@@ -9,6 +9,7 @@ const menuItems = [
     { label: 'Almacenes', icon: 'pi pi-building-columns', path: '/almacenes' },
     { label: 'Categorías', icon: 'pi pi-objects-column', path: '/categorias' },
     { label: 'Artículos', icon: 'pi pi-tag', path: '/articulos' },
+    { label: 'Bitacora', icon: 'pi pi-database', path: '/bitacora' },
 ];
 
 const SidebarMenu = ({ collapsed }) => {

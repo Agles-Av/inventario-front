@@ -4,7 +4,7 @@ import { AlertHelper } from "../../utilities/alerts/AlertHelper";
 
 export const UpdateUser = async (userData) => {
     const credenciales = toUserResponsable(userData);
-    console.log("Upt",credenciales);
+
     const response = await AxiosClient({
         method: 'PUT',
         url: `/user/update/${userData.id}/`,

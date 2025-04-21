@@ -5,9 +5,7 @@ import { Tooltip } from 'primereact/tooltip';
 
 
 const menuItems = [
-    { label: 'Dashboard', icon: 'pi pi-chart-bar', path: '/dashboard' },
-    { label: 'Cuentas', icon: 'pi pi-wallet', path: '/accounts' },
-    { label: 'Gastos', icon: 'pi pi-money-bill', path: '/expenses' },
+    { label: 'Tu almacén', icon: 'pi pi-warehouse', path: '/dashboard' },
 ];
 
 const SidebarMenu = ({ collapsed }) => {

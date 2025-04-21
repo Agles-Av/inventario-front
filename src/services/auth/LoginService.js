@@ -10,7 +10,9 @@ export const LoginService = async (loginCredenciales) => {
     url: "/auth/login",
     data: payload,
   });
-    localStorage.setItem("firstLogin", response.firstLogin);
-    AlertHelper.showAlert(`Bienvenido ${response.data.user.nombre}`, "success");
-    return toAuthSession(response.data);
+  
+  localStorage.setItem("almacenUser", JSON.stringify(response.data.user.almacen));
+  localStorage.setItem("firstLogin", response.firstLogin);
+  AlertHelper.showAlert(`Bienvenido ${response.data.user.nombre}`, "success");
+  return toAuthSession(response.data);
 };

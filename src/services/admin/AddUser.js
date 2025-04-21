@@ -11,6 +11,6 @@ export const AddUser = async (userData) => {
         data: credenciales,
     })
     AlertHelper.showAlert("Usuario creado", "success");
-    console.log(response);
+
     return new UserList(response.data)
 }

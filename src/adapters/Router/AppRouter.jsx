@@ -15,6 +15,8 @@ const AppRouter = () => {
     const ListAlmacenes = lazy(() => import('../../pages/user/ListAlmacenes'))
     const ListArticulos = lazy(() => import('../../pages/user/ListArticulos'))
     const ListCategorias = lazy(() => import('../../pages/user/ListCategorias'))
+    const Bitacora = lazy(() => import('../../pages/user/Bitacora'))
+    const ResponsableListArticulos = lazy(() => import('../../pages/user/ResponsableListArticulos'))
     //usar el contexto de autenticación
     const { firstLogin, user } = useContext(AuthContext)
     const role = user?.user?.role || localStorage.getItem('role') || "";
@@ -50,14 +52,21 @@ const AppRouter = () => {
                                 <ListCategorias/>
                             </Suspense>
                         }/>
-                        {/* Aquí agregarás más rutas de admin */}
+                        <Route path='/bitacora' element={
+                            <Suspense fallback={<SpinnerLazy />}>
+                                <Bitacora/>
+                            </Suspense>
+                        }/>
                     </Route>
                 )
             case 'RESPONSABLE':
                 return (
                     <Route path='/' element={<SideBarResponsable/>}>
-                        <Route index element={<h1>User</h1>} />
-                        {/* Aquí agregarás más rutas de user */}
+                        <Route index element={
+                            <Suspense fallback={<SpinnerLazy />}>
+                               <ResponsableListArticulos/>
+                            </Suspense>
+                        }/>
                     </Route>
                 )
             default:

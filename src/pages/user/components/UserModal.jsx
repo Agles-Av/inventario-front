@@ -83,8 +83,6 @@ const UserModal = ({ visible, onhide, initialdata, mode, loading }) => {
             }
         } else if (mode === 'create') {
             try {
-                console.log("Create", formData);
-
                 await AddUser(formData);
             } catch (error) {
                 AlertHelper.showAlert(error.message, "error");

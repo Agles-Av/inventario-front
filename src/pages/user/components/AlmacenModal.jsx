@@ -25,8 +25,6 @@ const AlmacenModal = ({ initialData, visible, onhide, loading, mode }) => {
     const [articulosCategoria, setArticulosCategoria] = useState([]);
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
     const [errors, setErrors] = useState({});
-    console.log(errors);
-    console.log(formData);
     
     
     const handleChange = (e) => {
@@ -86,10 +84,8 @@ const AlmacenModal = ({ initialData, visible, onhide, loading, mode }) => {
     const CrearAlmacen = async () => {
         try {
             const response = await AddAlmacen(formData);
-            console.log(response);
             
         } catch (error) {
-            console.log(error);
             
             AlertHelper.showAlert("No se pudo crear el almacén", "error");
         }finally{

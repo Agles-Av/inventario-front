@@ -17,13 +17,13 @@ const ArticuloModal = ({ initialData, visible, onhide, mode, loading }) => {
         categoria: null,
         almacenes: []
     });
-    
-    
+
+
 
     const [errors, setErrors] = useState({});
     const [errorsAlamacenes, setErrorsAlmacenes] = useState({});
-    console.log("Errores: ",errors);
-    
+
+
 
     const [categorias, setCategorias] = useState([]);
     const [almacenesOptions, setAlmacenesOptions] = useState([]);
@@ -52,8 +52,8 @@ const ArticuloModal = ({ initialData, visible, onhide, mode, loading }) => {
             setFormData({
                 nombre: initialData.nombre,
                 descripcion: initialData.descripcion,
-                categoria: initialData.categoria?.id || null,  
-                almacenes: initialData.almacenes?.id || []  
+                categoria: initialData.categoria?.id || null,
+                almacenes: initialData.almacenes?.id || []
             });
         } else {
             setFormData({
@@ -104,7 +104,7 @@ const ArticuloModal = ({ initialData, visible, onhide, mode, loading }) => {
         try {
             if (mode === 'editar') {
                 await updateArticulo(formData, initialData.id);
-            }else{
+            } else {
                 await addArticulo(formData);
             }
         } catch (error) {
@@ -112,7 +112,7 @@ const ArticuloModal = ({ initialData, visible, onhide, mode, loading }) => {
                 message: mode === 'editar' ? "No se pudo editar el artículo" : "No se pudo crear el artículo",
                 type: "error"
             });
-            console.log("ERROR AL CREAR ARTICULO ", error);
+         
         } finally {
             onHide();
             setErrors({});
@@ -123,7 +123,7 @@ const ArticuloModal = ({ initialData, visible, onhide, mode, loading }) => {
                 almacenes: []
             });
             loading(true);
-           
+
         }
 
     }
@@ -155,92 +155,92 @@ const ArticuloModal = ({ initialData, visible, onhide, mode, loading }) => {
             {
                 mode === 'editar' ? (
                     <div className="formgrid grid">
-            <div className="field col-12">
-                <FancyInput
-                    name="nombre"
-                    label="Nombre del artículo"
-                    value={formData.nombre}
-                    onChange={handleInputChange}
-                    icon={<i className="pi pi-tag" />}
-                    required
-                    errorMessage={errors.nombre}
-                />
-            </div>
+                        <div className="field col-12">
+                            <FancyInput
+                                name="nombre"
+                                label="Nombre del artículo"
+                                value={formData.nombre}
+                                onChange={handleInputChange}
+                                icon={<i className="pi pi-tag" />}
+                                required
+                                errorMessage={errors.nombre}
+                            />
+                        </div>
 
-            <div className="field col-12">
-                <FancyInput
-                    name="descripcion"
-                    label="Descripción"
-                    value={formData.descripcion}
-                    onChange={handleInputChange}
-                    icon={<i className="pi pi-align-left" />}
-                    errorMessage={errors.descripcion}
-                />
-            </div>
+                        <div className="field col-12">
+                            <FancyInput
+                                name="descripcion"
+                                label="Descripción"
+                                value={formData.descripcion}
+                                onChange={handleInputChange}
+                                icon={<i className="pi pi-align-left" />}
+                                errorMessage={errors.descripcion}
+                            />
+                        </div>
 
-            <div className="field col-12 md:col-6">
-                <label htmlFor="categoria" className="block text-600 text-sm font-medium mb-2">
-                    Categoría*
-                </label>
-                <Dropdown
-                    id="categoria"
-                    name="categoria"
-                    value={formData.categoria}
-                    options={categorias}
-                    onChange={handleDropdownChange}
-                    optionLabel="label"
-                    placeholder="Seleccione categoría"
-                    className="w-full"
-                />
-                {errorsAlamacenes.categoria && (
-                    <small className="p-error">{errors.categoria}</small>
-                )}
-            </div>
+                        <div className="field col-12 md:col-6">
+                            <label htmlFor="categoria" className="block text-600 text-sm font-medium mb-2">
+                                Categoría*
+                            </label>
+                            <Dropdown
+                                id="categoria"
+                                name="categoria"
+                                value={formData.categoria}
+                                options={categorias}
+                                onChange={handleDropdownChange}
+                                optionLabel="label"
+                                placeholder="Seleccione categoría"
+                                className="w-full"
+                            />
+                            {errorsAlamacenes.categoria && (
+                                <small className="p-error">{errors.categoria}</small>
+                            )}
+                        </div>
 
-            <div className="field col-12 md:col-6">
-                <label htmlFor="almacenes" className="block text-600 text-sm font-medium mb-2">
-                    Almacenes*
-                </label>
-                <Dropdown
-                    id="almacenes"
-                    name="almacenes"
-                    value={formData.almacenes}
-                    options={almacenesOptions}
-                    onChange={handleDropdownChange}
-                    optionLabel="label"
-                    placeholder="Seleccione almacenes"
-                    className="w-full"
-                    multiple
-                />
-                {errorsAlamacenes.almacenes && (
-                    <small className="p-error">{errors.almacenes}</small>
-                )}
-            </div>
+                        <div className="field col-12 md:col-6">
+                            <label htmlFor="almacenes" className="block text-600 text-sm font-medium mb-2">
+                                Almacenes*
+                            </label>
+                            <Dropdown
+                                id="almacenes"
+                                name="almacenes"
+                                value={formData.almacenes}
+                                options={almacenesOptions}
+                                onChange={handleDropdownChange}
+                                optionLabel="label"
+                                placeholder="Seleccione almacenes"
+                                className="w-full"
+                                multiple
+                            />
+                            {errorsAlamacenes.almacenes && (
+                                <small className="p-error">{errors.almacenes}</small>
+                            )}
+                        </div>
 
-            <div className="field col-12 flex justify-content-end">
-                <button
-                    type="button"
-                    className="p-button p-component p-button-text"
-                    onClick={() => onHide()}
-                >
-                    Cancelar
-                </button>
-                <button
-                    type="button"
-                    className="p-button p-component p-button-primary ml-2"
-                    onClick={() => enviarDatos()}
-                    disabled={
-                        Object.keys(errors).length > 0 ||
-                        !formData.nombre ||
-                        !formData.descripcion ||
-                        !formData.categoria ||
-                        formData.almacenes.length === 0
-                    }
-                >
-                    Actualizar
-                </button>
-            </div>
-        </div>
+                        <div className="field col-12 flex justify-content-end">
+                            <button
+                                type="button"
+                                className="p-button p-component p-button-text"
+                                onClick={() => onHide()}
+                            >
+                                Cancelar
+                            </button>
+                            <button
+                                type="button"
+                                className="p-button p-component p-button-primary ml-2"
+                                onClick={() => enviarDatos()}
+                                disabled={
+                                    Object.keys(errors).length > 0 ||
+                                    !formData.nombre ||
+                                    !formData.descripcion ||
+                                    !formData.categoria ||
+                                    formData.almacenes.length === 0
+                                }
+                            >
+                                Actualizar
+                            </button>
+                        </div>
+                    </div>
                 ) : (
 
                     <div className="formgrid grid">

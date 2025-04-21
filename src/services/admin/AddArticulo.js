@@ -2,7 +2,8 @@ import AxiosClient from "../../interceptors/AxiosClient";
 import { ArticuloAdapter } from "../../adapters/user/CategoriaAdapter";
 import { AlertHelper } from "../../utilities/alerts/AlertHelper";
 
-export const addArticulo = async (articulo) => {
+export const addArticulo = async (articulo) => {  
+    
     
   const payload = {
     nombre: articulo.nombre,
@@ -16,6 +17,8 @@ export const addArticulo = async (articulo) => {
       },
     ],
   };
+
+  
 
   const response = await AxiosClient({
     method: "POST",
